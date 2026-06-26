@@ -1,6 +1,7 @@
 from sqlalchemy import Column, String, TIMESTAMP
 from datetime import datetime
 import uuid
+from sqlalchemy.orm import relationship
 from database import Base
 
 class Admin(Base):
@@ -12,3 +13,4 @@ class Admin(Base):
     password_hash = Column(String)
     department = Column(String)
     created_at = Column(TIMESTAMP, default=datetime.utcnow)
+    events = relationship("Event", back_populates="admin")
